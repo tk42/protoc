@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  protoc: 
+    image: ghcr.io/tk42/protoc
+    volumes: 
+      - .:/tmp
+    working_dir: "/tmp"
+    command: ["protoc", "--go_out=.", "--go-grpc_out=.", "-I.", "./helloworld.proto"]
