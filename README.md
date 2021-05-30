@@ -1,3 +1,7 @@
+## ```protoc``` IS DEPRECATED, TRY TO USE A NEW TOOL ```buf``` in [buf.build](https://buf.build/)
+
+---
+
 # protoc
 [![Docker Image CI](https://github.com/tk42/protoc/actions/workflows/action.yml/badge.svg)](https://github.com/tk42/protoc/actions/workflows/action.yml)
 
@@ -20,3 +24,4 @@ you'll find ```*.pb.go``` in the path specified at ```go_package``` in the proto
 
 ## Reference
 [Quick start](https://grpc.io/docs/languages/go/quickstart/)
+[iamrajiv/helloworld-grpc-gateway](https://github.com/iamrajiv/helloworld-grpc-gateway)

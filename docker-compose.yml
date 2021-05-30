@@ -7,3 +7,4 @@ services:
       - .:/tmp
     working_dir: "/tmp"
     command: ["protoc", "--go_out=.", "--go-grpc_out=.", "-I.", "./helloworld.proto"]
+    # command: ["protoc", "--go_out=.", "--go-grpc_out=.", "--grpc-gateway_out=.", "-I.", "./helloworld.proto"] # TODO: set PATH to google/api
