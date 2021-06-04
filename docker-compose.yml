@@ -1,10 +1,18 @@
 version: '3'
 
 services:
-  protoc: 
+  proto-golang: 
     image: ghcr.io/tk42/protoc
     volumes: 
       - .:/tmp
     working_dir: "/tmp"
     command: ["protoc", "--go_out=.", "--go-grpc_out=.", "-I.", "./helloworld.proto"]
     # command: ["protoc", "--go_out=.", "--go-grpc_out=.", "--grpc-gateway_out=.", "-I.", "./helloworld.proto"] # TODO: set PATH to google/api
+
+  proto-python: 
+    image: ghcr.io/tk42/protoc
+    volumes: 
+      - .:/tmp
+    working_dir: "/tmp"
+    command: ["protoc", "--python_out=./example.com/hello", "-I.", "./helloworld.proto"]
+  
