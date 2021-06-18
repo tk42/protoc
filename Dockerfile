@@ -144,14 +144,17 @@ RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
 
 ####
 ## install python plugin of protobuf
+##
+##  Tips: https://qiita.com/minarai/items/f1b699da4e5662247f45
+##  install py3-pip
 ####
-RUN apk add --no-cache python3-dev py-pip
+RUN apk add --no-cache python3 python3-dev py3-pip
 
-RUN pip install protobuf
+RUN pip3 install protobuf
 
 ####
 ## install python plugin of python-grpc
 ## Following instruction is from https://grpc.io/docs/languages/python/quickstart/
 ####
-RUN python -m pip install --upgrade pip \
-    python -m pip install grpcio grpcio-tools
+RUN pip3 install --upgrade pip \
+    pip3 install grpcio grpcio-tools
