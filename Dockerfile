@@ -1,15 +1,15 @@
 FROM alpine
 
 ENV PROTOBUF_VERSION=3.17.3
-ENV GOLANG_VERSION=1.16.5
 
 RUN apk update && \
     apk add --no-cache \
 		ca-certificates
 
 ####
-## install golang
+## install golang copied golang/alpine from https://hub.docker.com/_/golang
 ####
+
 # set up nsswitch.conf for Go's "netgo" implementation
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
@@ -53,7 +53,7 @@ RUN set -eux; \
     esac; \
     \
     # https://github.com/golang/go/issues/38536#issuecomment-616897960
-    url='https://dl.google.com/go/go${GOLANG_VERSION}.src.tar.gz'; \
+    url='https://dl.google.com/go/go1.16.5.src.tar.gz'; \
     sha256='7bfa7e5908c7cc9e75da5ddf3066d7cbcf3fd9fa51945851325eebc17f50ba80'; \
     \
     wget -O go.tgz.asc "$url.asc"; \
