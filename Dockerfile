@@ -157,4 +157,8 @@ RUN pip install protobuf
 ## Following instruction is from https://grpc.io/docs/languages/python/quickstart/
 ####
 RUN pip install --upgrade pip
-RUN pip install grpcio grpcio-tools
+RUN curl -L -o grpcio.whl https://files.pythonhosted.org/packages/7e/2a/6fdcab8087bb46fa2e9c2cc814c00ad1715d0f402e4dd997770ea70cddeb/grpcio-1.38.0-cp39-cp39-manylinux2014_x86_64.whl
+RUN curl -L -o grpcio-tools.whl https://files.pythonhosted.org/packages/b0/ba/6eef860a5e1bbbe9fdb1aeb4228833de4639c96d1dc528eeed82ff995ef7/grpcio_tools-1.38.0-cp39-cp39-manylinux2014_x86_64.whl
+
+RUN pip install grpcio.whl \
+    pip install grpcio-tools.whl
