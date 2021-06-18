@@ -157,8 +157,8 @@ RUN pip install protobuf
 ## Following instruction is from https://grpc.io/docs/languages/python/quickstart/
 ####
 RUN pip install --upgrade pip
-RUN curl -o grpcio-1.38.0-cp39-cp39-manylinux2014_x86_64.whl https://files.pythonhosted.org/packages/7e/2a/6fdcab8087bb46fa2e9c2cc814c00ad1715d0f402e4dd997770ea70cddeb/grpcio-1.38.0-cp39-cp39-manylinux2014_x86_64.whl
-RUN pip install grpcio-1.38.0-cp39-cp39-manylinux2014_x86_64.whl
+RUN curl -o grpcio-1.38.0-cp39-cp39-manylinux2014_aarch64.whl https://files.pythonhosted.org/packages/34/be/497c73af88a5fdbf8421c9f9770cbfd1dcb8e3c912d95a38889dbb29929a/grpcio-1.38.0-cp39-cp39-manylinux2014_aarch64.whl
+RUN pip install grpcio-1.38.0-cp39-cp39-manylinux2014_aarch64.whl
 
-RUN curl -o grpcio_tools-1.38.0-cp39-cp39-manylinux2014_x86_64.whl https://files.pythonhosted.org/packages/b0/ba/6eef860a5e1bbbe9fdb1aeb4228833de4639c96d1dc528eeed82ff995ef7/grpcio_tools-1.38.0-cp39-cp39-manylinux2014_x86_64.whl
-RUN pip install grpcio_tools-1.38.0-cp39-cp39-manylinux2014_x86_64.whl
+RUN curl -o grpcio_tools-1.38.0-cp39-cp39-manylinux2014_aarch64.whl https://files.pythonhosted.org/packages/ee/d7/c5874011fbe6ada90d16b688b8a7d33f30390484d712d22192d9e5cc4f4e/grpcio_tools-1.38.0-cp39-cp39-manylinux2014_aarch64.whl
+RUN pip install grpcio_tools-1.38.0-cp39-cp39-manylinux2014_aarch64.whl
