@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV PROTOBUF_VERSION=3.17.2
+ENV PROTOBUF_VERSION=3.17.3
 ENV GOLANG_VERSION=1.16.5
 
 RUN apk update && \
@@ -53,7 +53,7 @@ RUN set -eux; \
     esac; \
     \
     # https://github.com/golang/go/issues/38536#issuecomment-616897960
-    url='https://dl.google.com/go/go1.16.5.src.tar.gz'; \
+    url='https://dl.google.com/go/go${GOLANG_VERSION}.src.tar.gz'; \
     sha256='7bfa7e5908c7cc9e75da5ddf3066d7cbcf3fd9fa51945851325eebc17f50ba80'; \
     \
     wget -O go.tgz.asc "$url.asc"; \
@@ -143,14 +143,15 @@ RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
     go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 ####
-## install python plugin of protobuf and python-grpc
+## install python plugin of protobuf
 ####
 RUN apk add --no-cache python3-dev py-pip
 
 RUN pip install protobuf
-RUN pip3 install --upgrade pip
-RUN python3 -m pip install --upgrade setuptools
-RUN SYSTEM_VERSION_COMPAT=1 pip3 install grpcio grpcio-tools
 
-# RUN python3 -m pip install grpcio grpcio-tools
-# RUN pip install --no-cache-dir --force-reinstall -Iv grpcio grpcio-tools
+####
+## install python plugin of python-grpc
+## Following instruction is from https://grpc.io/docs/languages/python/quickstart/
+####
+RUN python -m pip install --upgrade pip \
+    python -m pip install grpcio grpcio-tools
