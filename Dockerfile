@@ -156,5 +156,5 @@ RUN pip install protobuf
 ## install python plugin of python-grpc
 ## Following instruction is from https://grpc.io/docs/languages/python/quickstart/
 ####
-RUN python3 -m pip install --upgrade pip \
-    python3 -m pip install grpcio grpcio-tools
+RUN pip install --upgrade pip
+RUN pip install grpcio grpcio-tools
