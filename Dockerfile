@@ -134,7 +134,7 @@ RUN set -eux && \
     make install
 
 ####
-## install golang plugin of protobuf ( protoc-gen-go (API v2) and protoc-gen-doc )
+## install golang plugin of protobuf, protoc-gen-go (API v2), protoc-gen-go-grpc (API v2) and protoc-gen-doc
 ####
 RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
     go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
@@ -143,8 +143,14 @@ RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
     go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 ####
-## install python plugin of protobuf
+## install python plugin of protobuf and python-grpc
 ####
 RUN apk add --no-cache python3-dev py-pip
 
 RUN pip install protobuf
+RUN pip3 install --upgrade pip
+RUN python3 -m pip install --upgrade setuptools
+RUN SYSTEM_VERSION_COMPAT=1 pip3 install grpcio grpcio-tools
+
+# RUN python3 -m pip install grpcio grpcio-tools
+# RUN pip install --no-cache-dir --force-reinstall -Iv grpcio grpcio-tools
