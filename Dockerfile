@@ -20,6 +20,10 @@ RUN apt-get update
 RUN apt-get install -y \
 		ca-certificates curl golang-${GOLANG_VERSION}
 
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:$PATH
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
 ####
 ## download protoc
 ## https://github.com/protocolbuffers/protobuf/blob/master/src/README.md
