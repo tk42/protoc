@@ -18,7 +18,7 @@ RUN apt-get update
 ####
 
 RUN apt-get install -y \
-		ca-certificates curl golang-${GOLANG_VERSION}}
+		ca-certificates curl golang-${GOLANG_VERSION}
 
 ####
 ## download protoc
