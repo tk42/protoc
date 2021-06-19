@@ -40,6 +40,10 @@ RUN set -eux && \
 ####
 ## install golang plugin of protobuf, protoc-gen-go (API v2), protoc-gen-go-grpc (API v2) and protoc-gen-doc
 ####
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:$PATH
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
 RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
     go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
     go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
