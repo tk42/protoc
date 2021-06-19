@@ -15,15 +15,6 @@ RUN apt-get install -y \
 		ca-certificates curl golang
 
 ####
-## install golang plugin of protobuf, protoc-gen-go (API v2), protoc-gen-go-grpc (API v2) and protoc-gen-doc
-####
-RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
-    go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
-    go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
-    go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway && \
-    go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
-
-####
 ## download protoc
 ## https://github.com/protocolbuffers/protobuf/blob/master/src/README.md
 ####
@@ -45,6 +36,15 @@ RUN set -eux && \
     ./configure && \
     make -j 3 && \
     make install
+
+####
+## install golang plugin of protobuf, protoc-gen-go (API v2), protoc-gen-go-grpc (API v2) and protoc-gen-doc
+####
+RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
+    go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
+    go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
+    go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway && \
+    go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 ####
 ## install python plugin of protobuf
