@@ -47,14 +47,6 @@ RUN set -eux && \
     make install
 
 ####
-## install grpc
-####
-
-WORKDIR /tmp
-RUN git clone --recursive https://github.com/grpc/grpc
-RUN cd grpc && make plugins -j 12
-
-####
 ## install python plugin of protobuf
 ####
 # MEMO: To avoid dialog of tzdata (a python library). https://qiita.com/yagince/items/deba267f789604643bab

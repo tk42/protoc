@@ -14,5 +14,5 @@ services:
     volumes: 
       - .:/tmp
     working_dir: "/tmp"
-    command: ["protoc", "--python_out=./example.com/hello", "--grpc_python_out=./example.com/hello", "-I.", "./helloworld.proto"]
-  
+    # Note: use 'python3 -m grpc_tools.protoc'
+    command: ["python3", "-m", "grpc_tools.protoc", "--python_out=./example.com/hello", "--grpc_python_out=./example.com/hello", "-I.", "./helloworld.proto"]
