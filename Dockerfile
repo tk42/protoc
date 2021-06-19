@@ -22,11 +22,12 @@ RUN apt-get install -y \
 
 ####
 ## download protoc
+## https://github.com/protocolbuffers/protobuf/blob/master/src/README.md
 ####
 WORKDIR /tmp
 
 RUN set -eux && \
-    apt-get install -y git curl autoconf automake libtool && \
+    apt-get install -y git curl autoconf automake libtool g++ unzip make && \
     curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-cpp-${PROTOBUF_VERSION}.tar.gz && \
     tar -zxvf protobuf.tar.gz
 
