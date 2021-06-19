@@ -49,6 +49,9 @@ RUN set -eux && \
 ####
 ## install python plugin of protobuf
 ####
+# MEMO: To avoid dialog of tzdata (a python library). https://qiita.com/yagince/items/deba267f789604643bab
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get install -y python3 python3-dev pip
 RUN pip install --upgrade pip
 
@@ -57,8 +60,5 @@ RUN pip install --upgrade pip
 ##   Following instruction is from https://grpc.io/docs/languages/python/quickstart/
 ## CAUTION: This way is failed on alpine.
 ####
-
-# MEMO: To avoid dialog of tzdata (a python library). https://qiita.com/yagince/items/deba267f789604643bab
-ENV DEBIAN_FRONTEND=noninteractive
 
 RUN pip install protobuf grpcio grpcio-tools
