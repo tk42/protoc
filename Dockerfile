@@ -26,9 +26,9 @@ RUN apt-get install -y \
 WORKDIR /tmp
 
 RUN set -eux && \
-    apt-get install -y git curl build-base autoconf automake libtool && \
+    apt-get install -y git curl autoconf automake libtool && \
     curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-cpp-${PROTOBUF_VERSION}.tar.gz && \
-    tar xvzf protobuf.tar.gz
+    tar -zxvf protobuf.tar.gz
 
 WORKDIR /tmp/protobuf-${PROTOBUF_VERSION}
 
@@ -60,5 +60,6 @@ RUN pip install --upgrade pip
 ####
 ## install python plugin of python-grpc
 ## Following instruction is from https://grpc.io/docs/languages/python/quickstart/
+## CAUTION: This way is failed on alpine.
 ####
 RUN pip install protobuf grpcio grpcio-tools
