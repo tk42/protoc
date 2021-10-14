@@ -3,7 +3,7 @@
 ####
 FROM ubuntu:21.10
 
-ENV PROTOBUF_VERSION=3.17.3
+ENV PROTOBUF_VERSION=3.18.1
 
 RUN apt-get update
 
@@ -12,7 +12,7 @@ RUN apt-get update
 ####
 
 RUN apt-get install -y \
-		ca-certificates curl golang
+	ca-certificates curl golang
 
 ####
 ## download protoc
@@ -21,9 +21,9 @@ RUN apt-get install -y \
 WORKDIR /tmp
 
 RUN set -eux && \
-    apt-get install -y git curl autoconf automake libtool g++ unzip make && \
-    curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-cpp-${PROTOBUF_VERSION}.tar.gz && \
-    tar -zxvf protobuf.tar.gz
+	apt-get install -y git curl autoconf automake libtool g++ unzip make && \
+	curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-cpp-${PROTOBUF_VERSION}.tar.gz && \
+	tar -zxvf protobuf.tar.gz
 
 WORKDIR /tmp/protobuf-${PROTOBUF_VERSION}
 
@@ -32,10 +32,10 @@ WORKDIR /tmp/protobuf-${PROTOBUF_VERSION}
 ####
 
 RUN set -eux && \
-    ./autogen.sh && \
-    ./configure && \
-    make -j 3 && \
-    make install
+	./autogen.sh && \
+	./configure && \
+	make -j 3 && \
+	make install
 
 ####
 ## install golang plugin of protobuf, protoc-gen-go (API v2), protoc-gen-go-grpc (API v2) and protoc-gen-doc
@@ -45,10 +45,10 @@ ENV PATH $GOPATH/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
-    go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
-    go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
-    go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway && \
-    go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
+	go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
+	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway && \
+	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 ####
 ## install python plugin of protobuf
