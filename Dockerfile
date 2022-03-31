@@ -3,7 +3,8 @@
 ####
 FROM ubuntu:21.10
 
-ENV PROTOBUF_VERSION=3.18.1
+## Check at https://github.com/protocolbuffers/protobuf/releases/
+ENV PROTOBUF_VERSION=3.19.4
 
 RUN apt-get update
 
@@ -48,7 +49,8 @@ RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
 	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
 	go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
 	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway && \
-	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 && \
+	go get -u entgo.io/contrib/entproto/cmd/protoc-gen-entgrpc
 
 ####
 ## install python plugin of protobuf
