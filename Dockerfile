@@ -16,13 +16,6 @@ RUN apt-get install -y \
 	ca-certificates curl golang
 
 ####
-## avoid "fatal: could not read Username for 'https://github.com': terminal prompts disabled"
-####
-
-RUN git config --global \
-	url."https://${PAT}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-
-####
 ## download protoc
 ## https://github.com/protocolbuffers/protobuf/blob/master/src/README.md
 ####
