@@ -25,14 +25,14 @@ RUN git config --global url."ssh://git@github.com".insteadOf "https://github.com
 ## download protoc
 ## https://github.com/protocolbuffers/protobuf/blob/master/src/README.md
 ####
-WORKDIR /tmp
+WORKDIR /home
 
 RUN set -eux && \
 	apt-get install -y git curl autoconf automake libtool g++ unzip make && \
-	curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-cpp-${PROTOBUF_VERSION}.tar.gz && \
+	curl -L -o /home/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-cpp-${PROTOBUF_VERSION}.tar.gz && \
 	tar -zxvf protobuf.tar.gz
 
-WORKDIR /tmp/protobuf-${PROTOBUF_VERSION}
+WORKDIR /home/protobuf-${PROTOBUF_VERSION}
 
 ####
 ## install protoc
@@ -51,11 +51,12 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
-RUN go get -u google.golang.org/protobuf/cmd/protoc-gen-go && \
-	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
-	go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc && \
-	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway && \
-	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest && \
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest && \
+	go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest && \
+	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest && \
+	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest && \
+	go install entgo.io/contrib/entproto/cmd/protoc-gen-entgrpc@latest
 
 ####
 ## install python plugin of protobuf
