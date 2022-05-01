@@ -19,7 +19,8 @@ RUN apt-get install -y \
 ## avoid "fatal: could not read Username for 'https://github.com': terminal prompts disabled"
 ####
 
-RUN git config --global url."ssh://git@github.com".insteadOf "https://github.com"
+RUN git config --global \
+	url."https://<PAT>:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
 ####
 ## download protoc
