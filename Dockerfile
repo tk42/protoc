@@ -3,7 +3,8 @@
 ####
 FROM ubuntu:21.10
 
-ENV PROTOBUF_VERSION=3.18.1
+## See release page. https://github.com/protocolbuffers/protobuf/releases
+ENV PROTOBUF_VERSION=3.20.1
 
 RUN apt-get update
 
@@ -13,6 +14,12 @@ RUN apt-get update
 
 RUN apt-get install -y \
 	ca-certificates curl golang
+
+####
+## avoid "fatal: could not read Username for 'https://github.com': terminal prompts disabled"
+####
+
+RUN git config --global url."ssh://git@github.com".insteadOf "https://github.com"
 
 ####
 ## download protoc
