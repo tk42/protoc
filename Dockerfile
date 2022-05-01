@@ -20,7 +20,7 @@ RUN apt-get install -y \
 ####
 
 RUN git config --global \
-	url."https://<PAT>:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+	url."https://${PAT}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
 ####
 ## download protoc
